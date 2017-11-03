@@ -1,7 +1,19 @@
 - name: Hello World Sample
   hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
   tasks:
     - name: Hello Message
       debug:
         msg: "Hello World!"
+        
+    - name: template example.j2
+      template:
+        src: example.j2
+        dest: /etc/example2.conf
+        owner: root
+        group: root
+        mode: 0644
+        
 
